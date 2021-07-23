@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.model.Configuration;
 import com.company.model.Group;
 import com.company.service.Service;
 
@@ -10,7 +11,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         boolean bool = true;
-
         do {
             int command;
             System.out.println("Welcome Dear if you want to go far with us please enter Start \n" +

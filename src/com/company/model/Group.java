@@ -45,7 +45,7 @@ public class Group {
         space++;
         for (int i = 0; i < items.size(); i++) {
             printSpace();
-            System.out.println(items.get(i).getName());
+            System.out.println(items.get(i).getName() + "  " + items.get(i).getFinalPrice() + "  " + items.get(i).getComplexity() );
         }
         for (int i = 0; i < subGroups.size(); i++) {
             printSpace();

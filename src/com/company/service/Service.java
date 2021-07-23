@@ -1,8 +1,13 @@
 package com.company.service;
 
 import com.company.database.Storage;
+import com.company.model.Configuration;
+import com.company.model.Generative;
 import com.company.model.Group;
-import com.company.model.Item;
+import com.company.model.Stock;
+import com.company.util.CreateGenerative;
+import com.company.util.CreateGroup;
+import com.company.util.CreateStock;
 
 import java.util.List;
 import java.util.Scanner;
@@ -22,7 +27,8 @@ public class Service {
         boolean bool = true;
         int command;
         while (bool) {
-            addGroup();
+
+            CreateGroup.createGroup();
             System.out.println("If you want to continue add new Group \n" +
                     "1 - Continue \n" +
                     "2 - Exit");
@@ -35,18 +41,43 @@ public class Service {
         }
         bool = true;
         while (bool) {
-            addItem();
             System.out.println("If you want to continue add new Item \n" +
                     "1 - Continue \n" +
                     "2 - Exit");
             command = scint.nextInt();
             if (command == 1) {
-                bool = true;
-            } else {
-                bool = false;
+                System.out.println("What type of Items you want to create , please choose  \n" +
+                        "1 - Generative \n" +
+                        "2 - Stock");
+                command = scint.nextInt();
+                if (command == 1) {
+
+                    Generative generative = CreateGenerative.createGenerative();
+                    System.out.println("Choose resolution for generative Item");
+                    for (Configuration.Resolution element : Configuration.Resolution.values()) {
+                        System.out.println(element);
+                    }
+                    String resolution = sc.nextLine();
+                    generative.setResolution(generative.setItemResolution(resolution));
+                    generative.setFinalPrice(generative.calculate(generative.getResolution()));
+                    Storage.newItem(generative);
+                } else if (command == 2) {
+                    System.out.println(" Please input Stock Item name ");
+                    Stock stock = CreateStock.createStock();
+                    System.out.println("Choose resolution for Stock Item");
+                    for (Configuration.Resolution element : Configuration.Resolution.values()) {
+                        System.out.println(element);
+                    }
+                    String resolution = sc.nextLine();
+                    stock.setResolution(stock.setItemResolution(resolution));
+                    stock.setFinalPrice(stock.calculate(stock.getResolution()));
+                } else {
+                    bool = false;
+                }
             }
         }
         print();
+        System.out.println();
     }
 
     private static void print() {
@@ -56,43 +87,5 @@ public class Service {
                 group.printContent();
             }
         }
-    }
-
-    public static void addGroup() {
-        String name;
-        String parentId;
-        int pId;
-        System.out.println(" Please input Group name ");
-        name = sc.nextLine();
-        System.out.println(" Please input parent Group id ");
-        parentId = sc.nextLine();
-        Group group = new Group(name);
-        System.out.println("Created group with Id - " + group.getId());
-
-        if (!parentId.isEmpty()) {
-            pId = Integer.parseInt(parentId);
-            Storage.getGroup(pId).addSubGroup(group);
-        }
-        Storage.addGroup(group);
-    }
-
-    public static void addItem() {
-        String name;
-        int price;
-        Item.Currency currency;
-        int groupId;
-        System.out.println(" Please input Item name ");
-        name = sc.nextLine();
-        System.out.println(" Please input Item price ");
-        price = scint.nextInt();
-        System.out.println(" Please input Item Currency ");
-        currency = Item.Currency.valueOf(sc.nextLine());
-        System.out.println(" Please input Group Id for Item ");
-        groupId = scint.nextInt();
-        Item item = new Item(name, price, currency);
-        System.out.println("Created Item with Id - " + item.getId());
-
-        Storage.getGroup(groupId).addItem(item);
-        Storage.addItem(item);
     }
 }

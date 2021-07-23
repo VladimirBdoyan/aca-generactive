@@ -5,6 +5,7 @@ import com.company.model.Configuration;
 import com.company.model.Generative;
 import com.company.model.Group;
 import com.company.model.Stock;
+import com.company.util.AddVariables;
 import com.company.util.CreateGenerative;
 import com.company.util.CreateGroup;
 import com.company.util.CreateStock;

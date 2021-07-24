@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Group {
     private static int idGeneration = 0;
-    private static int space = 0;
+    private static int space = 1;
 
     private int id;
     private String name;
@@ -56,6 +56,7 @@ public class Group {
     }
 
     private static void printSpace() {
+
         for (int i = 0; i <= space; i++) {
             System.out.print(" ");
         }

@@ -1,11 +1,10 @@
 package com.company.service;
 
 import com.company.database.Storage;
-import com.company.model.Configuration;
+import com.company.configuration.Configuration;
 import com.company.model.Generative;
 import com.company.model.Group;
 import com.company.model.Stock;
-import com.company.util.AddVariables;
 import com.company.util.CreateGenerative;
 import com.company.util.CreateGroup;
 import com.company.util.CreateStock;
@@ -63,7 +62,6 @@ public class Service {
                     generative.setFinalPrice(generative.calculate(generative.getResolution()));
                     Storage.newItem(generative);
                 } else if (command == 2) {
-                    System.out.println(" Please input Stock Item name ");
                     Stock stock = CreateStock.createStock();
                     System.out.println("Choose resolution for Stock Item");
                     for (Configuration.Resolution element : Configuration.Resolution.values()) {
@@ -72,9 +70,13 @@ public class Service {
                     String resolution = sc.nextLine();
                     stock.setResolution(stock.setItemResolution(resolution));
                     stock.setFinalPrice(stock.calculate(stock.getResolution()));
+                    Storage.newItem(stock);
                 } else {
-                    bool = false;
+                    System.out.println("Incorrect choose Items type , try again");
+                    bool = true;
                 }
+            }else{
+                bool = false;
             }
         }
         print();

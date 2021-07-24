@@ -1,4 +1,4 @@
-package com.company.model;
+package com.company.configuration;
 
 /**
  * Created with IntelliJ IDEA.
@@ -6,7 +6,8 @@ package com.company.model;
  * Date: 20.07.2021.
  * Time: 16:06.
  */
-public class Configuration {
+public class
+Configuration {
     private Resolution resolution;
 
     public Resolution getResolution() {

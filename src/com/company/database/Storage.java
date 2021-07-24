@@ -3,6 +3,7 @@ package com.company.database;
 import com.company.model.Group;
 import com.company.model.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,16 +20,16 @@ public class Storage {
     private static final Map<Integer, Item> storageItem = new HashMap<>();
 
     public static List<Group> getGroupList() {
-        return storageGroup.values().stream().collect(Collectors.toList());
+        return new ArrayList<>(storageGroup.values());
     }
 
 
-    public static void newItem (Item item){
+    public static void newItem(Item item) {
         Storage.getGroup(item.getGroup().getId()).addItem(item);
         Storage.addItem(item);
     }
-    public static void newGroup(Group group){
-        if(group.getParentGroup() != null) {
+    public static void newGroup(Group group) {
+        if (group.getParentGroup() != null) {
             Storage.getGroup(group.getParentGroup().getId()).addSubGroup(group);
         }
         Storage.addGroup(group);

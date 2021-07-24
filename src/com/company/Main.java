@@ -1,9 +1,6 @@
 package com.company;
 
-import com.company.model.Configuration;
-import com.company.model.Group;
 import com.company.service.Service;
-import com.company.service.Service1;
 
 import java.util.Scanner;
 
@@ -20,7 +17,7 @@ public class Main {
             command = sc.nextInt();
             switch (command) {
                 case 1:
-                    Service1.service1();
+                    Service.work();
                     break;
                 case 2:
                     bool = false;

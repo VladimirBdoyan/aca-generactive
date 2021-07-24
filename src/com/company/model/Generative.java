@@ -1,5 +1,7 @@
 package com.company.model;
 
+import com.company.configuration.Configuration;
+
 import java.util.Random;
 
 /**

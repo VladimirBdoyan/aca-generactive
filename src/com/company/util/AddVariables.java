@@ -1,9 +1,7 @@
 package com.company.util;
 
 import com.company.database.Storage;
-import com.company.model.Configuration;
 import com.company.model.Generative;
-import com.company.model.Item;
 
 /**
  * Created with IntelliJ IDEA.
